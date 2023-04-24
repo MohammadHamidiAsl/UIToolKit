@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class AbsoulutLayout : MonoBehaviour
+public class AbsoluteLayout : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private RectTransform rectTransform;
+
+    private void Start()
     {
-        
+        rectTransform = GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetPosition(GameObject element, Vector2 position)
     {
-        
+        element.GetComponent<RectTransform>().anchoredPosition = position;
+    }
+
+    public void SetSize(GameObject element, Vector2 size)
+    {
+        element.GetComponent<RectTransform>().sizeDelta = size;
     }
 }

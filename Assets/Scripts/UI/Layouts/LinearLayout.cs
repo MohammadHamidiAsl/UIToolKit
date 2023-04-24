@@ -1,18 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LinearLayout : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // This script assumes that the RectTransform and LayoutGroup components
+    // have already been added to the GameObject.
+
+    // Add a child element to the LinearLayout.
+    public void AddChild(GameObject child)
     {
-        
+        child.transform.SetParent(transform);
     }
 
-    // Update is called once per frame
-    void Update()
+    // Remove a child element from the LinearLayout.
+    public void RemoveChild(GameObject child)
     {
-        
+        child.transform.SetParent(null);
     }
 }

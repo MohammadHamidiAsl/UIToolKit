@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class WebView : MonoBehaviour
+public class WebViewManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private InputField urlInputField;
+    [SerializeField] private WebViewObject webViewObject;
+
+    public void LoadWebPage()
     {
-        
+        if (!string.IsNullOrEmpty(urlInputField.text))
+        {
+            string url = urlInputField.text;
+            webViewObject.LoadURL(url);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CloseWebView()
     {
-        
+        webViewObject.SetVisibility(false);
     }
 }

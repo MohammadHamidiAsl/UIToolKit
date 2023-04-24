@@ -1,18 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(RectTransform))]
 public class FrameLayout : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private bool fitToParent = true;
+    [SerializeField] private float padding = 10f;
+
+    private RectTransform rectTransform;
+
+    private void Awake()
     {
-        
+        rectTransform = GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if (fitToParent)
+        {
+            FitToParent();
+        }
+    }
+
+    public void FitToParent()
+    {
+        var parentRect = transform.parent.GetComponent<RectTransform>();
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.offsetMin = new Vector2(padding, padding);
+        rectTransform.offsetMax = new Vector2(-padding, -padding);
+        rectTransform.sizeDelta = new Vector2(
+            parentRect.rect.width - padding * 2,
+            parentRect.rect.height - padding * 2);
     }
 }
